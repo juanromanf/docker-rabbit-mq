@@ -1,0 +1,19 @@
+version: "3"
+
+services:
+  
+  broker:
+    image: "rabbitmq:3.7-management-alpine"
+    restart: unless-stopped
+    environment:
+      RABBITMQ_DEFAULT_USER: "admin"
+      RABBITMQ_DEFAULT_PASS: "rabbit"
+      RABBITMQ_HIPE_COMPILE: 1
+    volumes:
+      - mq-data:/var/lib/rabbitmq/mnesia
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+
+volumes:
+  mq-data:
